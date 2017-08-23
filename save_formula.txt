@@ -1,0 +1,22 @@
+variation of burning ship I named Beach
+c.old.r = fabs(c.new.r);
+c.old.i = fabs(c.new.i);
+c.new = c_add(c_div(c_mul(c.old, c.old), c_add(c.point, c.old)), deuxvinseize);
+
+tricorn
+c.old.r = c.new.r;
+c.old.i = -c.new.i;
+c.new = c_add(c_mul(c.old, c.old), c.point);
+
+meltingpot burning ship tricorn mandelbrot
+if (env->iter % 2 == 1)
+{
+	c.old = c.new;
+	c.new = c_add(c_mul(c.old, c.old), c.point);
+}
+else
+{
+	c.old.r = fabs(c.new.r);
+	c.old.i = fabs(c.new.i);
+	c.new = c_add(c_mul(c.old, c.old), c.point);
+}
