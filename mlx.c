@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 13:35:51 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/23 21:36:28 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void		set_var(t_env *env)
 {
 	env->px = 0.0;
 	env->py = 0.0;
-	env->move = 0.01;
+	env->move = 0.1;
+	env->move_r = 0;
+	env->move_i = 0;
 	env->max_x = 2.0;
 	env->max_y = 2.0;
 	env->min_x = -2.0;
@@ -38,7 +40,9 @@ void		maj_var(t_env *env)
 {
 	env->px = 0.0;
 	env->py = 0.0;
-	env->move = 0.01;
+	env->move = 0.1;
+	env->move_r = 0;
+	env->move_i = 0;
 	env->max_x = 2.0;
 	env->max_y = 2.0;
 	env->min_x = -2.0;
@@ -46,7 +50,8 @@ void		maj_var(t_env *env)
 	env->zoom = 1.5;
 	env->color_m = 5;
 	env->nvar = (env->fract_name == 3) ? 1 : 0;
-	env->max_i = (env->fract_name == 2 || env->fract_name == 3) ? 35 : 72;
+	env->max_i = (env->fract_name == 2 || env->fract_name == 3
+			|| env->fract_name == 5) ? 35 : 72;
 }
 
 void		pixel_put_image(unsigned long img_color, int x, int y,

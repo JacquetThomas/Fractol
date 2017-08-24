@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 19:55:02 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:36:57 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ typedef struct			s_hsl
 	float				m;
 }						t_hsl;
 
-typedef struct			s_point
-{
-	float				x;
-	float				y;
-}						t_point;
-
 typedef struct			s_plex
 {
 	double				r;
@@ -70,15 +64,15 @@ typedef struct			s_plex
 
 typedef struct			s_env
 {
-	float				zoom;
-	float				px;
-	float				py;
-	float				max_x;
-	float				max_y;
-	float				min_x;
-	float				min_y;
-	int					mouse_x;
-	int					mouse_y;
+	double				zoom;
+	double				px;
+	double				py;
+	double				max_x;
+	double				max_y;
+	double				min_x;
+	double				min_y;
+	int					move_r;
+	int					move_i;
 	int					help;
 	int					fract_name;
 	int					nvar;

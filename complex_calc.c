@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:39:26 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 15:13:21 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:50:06 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,20 @@ t_plex	map(int x, int y, t_env *env, int pxy)
 {
 	t_plex	new;
 
-	new.r = ((float)x / W_WIDTH) * (env->max_x - env->min_x) + env->min_x;
-	new.i = ((float)y / W_HEIGHT) * (env->max_y - env->min_y) + env->min_y;
-	if (pxy)
+	if (pxy != 2)
 	{
-		new.r += env->px;
-		new.i += env->py;
+		new.r = ((float)x / W_WIDTH) * (env->max_x - env->min_x) + env->min_x;
+		new.i = ((float)y / W_HEIGHT) * (env->max_y - env->min_y) + env->min_y;
+		if (pxy == 1)
+		{
+			new.r += env->px;
+			new.i += env->py;
+		}
+	}
+	if (pxy == 2)
+	{
+		new.r = ((float)x / W_WIDTH) * (1 - (-1)) + (-1);
+		new.i = ((float)y / W_HEIGHT) * (1 - (-1)) + (-1);
 	}
 	return (new);
 }

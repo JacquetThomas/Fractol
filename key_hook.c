@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 19:40:20 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:18:49 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,26 +99,34 @@ int		key_hook3(int keycode, t_env *env)
 	}
 	if (keycode == 24)
 	{
-		env->min_x /= 1.1;
-		env->min_y /= 1.1;
-		env->max_x /= 1.1;
-		env->max_y /= 1.1;
+		env->move *= 0.9;
+		env->min_x *= 0.9;
+		env->min_y *= 0.9;
+		env->max_x *= 0.9;
+		env->max_y *= 0.9;
 		draw(env);
 	}
 	if (keycode == 27)
 	{
+		env->move *= 1.1;
 		env->min_x *= 1.1;
 		env->min_y *= 1.1;
 		env->max_x *= 1.1;
 		env->max_y *= 1.1;
 		draw(env);
 	}
-	env->max_i += (keycode == 69) ? 1 : 0;
-	env->max_i -= (keycode == 78) ? 1 : 0;
+	if (keycode == 38)
+		env->move_r = (env->move_r) ? 0 : 1;
+	if (keycode == 40)
+		env->move_i = (env->move_i) ? 0 : 1;
+	env->max_i += (keycode == 69 && env->max_i < 500) ? 1 : 0;
+	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
 	env->px = (keycode == LEFT) ? env->px + env->move : env->px;
 	env->px = (keycode == RIGHT) ? env->px - env->move : env->px;
 	env->py = (keycode == DOWN) ? env->py - env->move : env->py;
 	env->py = (keycode == UP) ? env->py + env->move : env->py;
+	if (keycode == 6)
+		maj_var(env);
 	if (keycode == 53 || keycode == 12)
 		error_str("It's the end of fractol as we know it!", env, 2);
 	draw(env);

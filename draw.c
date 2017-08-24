@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 11:55:42 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 19:50:10 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:32:21 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,38 @@ int		draw(t_env *env)
 	return (1);
 }
 
+void	maj_julia(t_env *env)
+{
+	static int	flag = 0;
+	double		toto;
+
+	toto = 1 * env->move;
+	if (env->c_lock && env->move_r && flag == 0)
+	{
+		env->julia.r += toto;
+		if (env->julia.r > 1)
+			flag = 1;
+	}
+	if (env->c_lock && env->move_r && flag == 1)
+	{
+		env->julia.r -= toto;
+		if (env->julia.r < -0.99)
+			flag = 0;
+	}
+	if (env->c_lock && env->move_i && flag == 0)
+	{
+		env->julia.i += toto;
+		if (env->julia.i > 1)
+			flag = 1;
+	}
+	if (env->c_lock && env->move_i && flag == 1)
+	{
+		env->julia.i -= toto;
+		if (env->julia.i < -1)
+			flag = 0;
+	}
+}
+
 void	draw_fract(int fract, t_env *env)
 {
 	if (env->color_picker == 1)
@@ -30,7 +62,10 @@ void	draw_fract(int fract, t_env *env)
 	if (fract == 0)
 		mandelbrot(env);
 	if (fract == 1)
+	{
+		maj_julia(env);
 		julia(env);
+	}
 	if (fract == 2)
 		newton(env);
 	if (fract == 3)
@@ -56,6 +91,12 @@ void	print_info(t_env *env)
 		mlx_string_put(env->mlx, env->win, 2, 60, 0x00FF0000,
 				"Const. lock:");
 		mlx_string_put(env->mlx, env->win, 122, 60, 0x00FF0000, ito);
+		ito = (env->move_r) ? "Yes" : "No";
+		mlx_string_put(env->mlx, env->win, 2, 80, 0x00FF0000,
+				"move XY :");
+		mlx_string_put(env->mlx, env->win, 102, 80, 0x00FF0000, ito);
+		ito = (env->move_i) ? "Yes" : "No";
+		mlx_string_put(env->mlx, env->win, 132, 80, 0x00FF0000, ito);
 	}
 	mlx_string_put(env->mlx, env->win, 2, 20, 0x00FF0000, "Psyche:");
 	ito = (env->color_picker) ? "Oh Yeah man" : "Nop";
