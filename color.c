@@ -6,11 +6,23 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 14:32:25 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/24 16:16:16 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+unsigned int	b_or_w(t_env *env)
+{
+	int		toto;
+
+	toto = env->fract_name;
+	if (toto == 2 || toto == 3 || toto == 5)
+		return (0);
+	if (env->color_picker)
+		return (254);
+	return (0);
+}
 
 unsigned int	get_color(float h, float s, float l, t_env *env)
 {
@@ -20,7 +32,7 @@ unsigned int	get_color(float h, float s, float l, t_env *env)
 
 	if (h == 360)
 	{
-		uni = env->color_picker ? 254 : 0;
+		uni = b_or_w(env);
 		return (((uni << 16) + (uni << 8) + uni));
 	}
 	h = fmod((h + env->color_m), 360.0);

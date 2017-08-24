@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 11:55:42 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/23 17:32:21 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/24 17:18:04 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,6 @@ int		draw(t_env *env)
 	if (env->help == 1)
 		print_help(env);
 	return (1);
-}
-
-void	maj_julia(t_env *env)
-{
-	static int	flag = 0;
-	double		toto;
-
-	toto = 1 * env->move;
-	if (env->c_lock && env->move_r && flag == 0)
-	{
-		env->julia.r += toto;
-		if (env->julia.r > 1)
-			flag = 1;
-	}
-	if (env->c_lock && env->move_r && flag == 1)
-	{
-		env->julia.r -= toto;
-		if (env->julia.r < -0.99)
-			flag = 0;
-	}
-	if (env->c_lock && env->move_i && flag == 0)
-	{
-		env->julia.i += toto;
-		if (env->julia.i > 1)
-			flag = 1;
-	}
-	if (env->c_lock && env->move_i && flag == 1)
-	{
-		env->julia.i -= toto;
-		if (env->julia.i < -1)
-			flag = 0;
-	}
 }
 
 void	draw_fract(int fract, t_env *env)
@@ -78,6 +46,8 @@ void	draw_fract(int fract, t_env *env)
 		melting_pot(env);
 	if (fract == 7)
 		mandelbrot(env);
+	if (fract == 8)
+		menger(env);
 }
 
 void	print_info(t_env *env)

@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:46:58 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 19:23:00 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/24 14:43:41 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	print_help(t_env *env)
 	mlx_string_put(env->mlx, env->win, d, h - 120, 0x00FFFFFF,
 			"Lock Julia const.: (l)ock");
 	mlx_string_put(env->mlx, env->win, d, h - 100, 0x00FFFFFF,
-			"Mandelbrot: (1)| Var. of Newton: (4)");
+			"Change fractals : (1-8)");
 	print_help2(d, h, env);
 }
 
 void	print_help2(int d, int h, t_env *env)
 {
 	mlx_string_put(env->mlx, env->win, d, h - 80, 0x00FFFFFF,
-			"Julia: (2)     | Burning ship: (5)");
+			"Reset : (z)");
 	mlx_string_put(env->mlx, env->win, d, h - 60, 0x00FFFFFF,
-			"Newton: (3)    | Beach: (6)  | Melting-pot: (7)");
+			"...");
 	mlx_string_put(env->mlx, env->win, d, h - 40, 0x00FFFFFF,
 			"Quit: (esc) or (q)");
 	mlx_string_put(env->mlx, env->win, d, h - 20, 0x00FFFFFF,

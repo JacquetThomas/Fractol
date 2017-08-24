@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/23 18:18:49 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/24 18:03:12 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		key_hook2(int keycode, t_env *env)
 {
 	if (keycode == 37)
 		env->c_lock = (env->c_lock) ? 0 : 1;
-	if ((keycode >= 18 && keycode <= 23) || keycode == 26 || keycode == 28)
+	if ((keycode >= 18 && keycode <= 23) || keycode == 26 || keycode == 28
+			|| keycode == 25)
 	{
 		if (keycode == 18)
 			env->fract_name = 0;
@@ -61,6 +62,8 @@ int		key_hook2(int keycode, t_env *env)
 			env->fract_name = 6;
 		if (keycode == 28)
 			env->fract_name = 7;
+		if (keycode == 25)
+			env->fract_name = 8;
 		maj_var(env);
 	}
 	key_hook3(keycode, env);
@@ -99,6 +102,7 @@ int		key_hook3(int keycode, t_env *env)
 	}
 	if (keycode == 24)
 	{
+		env->zoom *= 0.9;
 		env->move *= 0.9;
 		env->min_x *= 0.9;
 		env->min_y *= 0.9;
@@ -108,6 +112,7 @@ int		key_hook3(int keycode, t_env *env)
 	}
 	if (keycode == 27)
 	{
+		env->zoom *= 1.1;
 		env->move *= 1.1;
 		env->min_x *= 1.1;
 		env->min_y *= 1.1;

@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/23 16:36:57 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/24 17:59:17 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 /*
 ** Define colors
 */
+# define MENGER 0xBD8D46
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
 # define ORANGE 0xED7F10
@@ -154,7 +155,9 @@ void					free_all(t_env *env);
 /*
 ** Functions of mandelbrot.c
 */
+int						menger_calc(int x, int y, t_env *env);
 int						mandelbrot_calc(int x, int y, t_env *env);
+void					menger(t_env *env);
 void					mandelbrot(t_env *env);
 int						melting_calc(int x, int y, t_env *env);
 void					melting_pot(t_env *env);
@@ -175,9 +178,14 @@ void					julia(t_env *env);
 ** Functions of mlx.c
 */
 void					set_var(t_env *env);
-void					maj_var(t_env *env);
 void					pixel_put_image(unsigned long img_color, int x, int y,
 		t_env *env);
+/*
+** Functions of update.c
+*/
+void					maj_var(t_env *env);
+void					maj_julia(t_env *env);
+int						maj_iter(int fract);
 
 /*
 ** Functions of color.c
