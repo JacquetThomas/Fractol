@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/24 16:16:16 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/26 14:23:10 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ unsigned int	get_color(float h, float s, float l, t_env *env)
 		choose_rgb(0, calc.x, calc.c, &color);
 	else if (calc.t < 5)
 		choose_rgb(calc.x, 0, calc.c, &color);
-	else //if (calc.t < 6)
+	else
 		choose_rgb(calc.c, 0, calc.x, &color);
 	calc_rgb(l, &calc, &color);
 	return (((color.rr << 16) + (color.gg << 8) + color.bb));

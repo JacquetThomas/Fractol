@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/24 18:03:12 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/26 14:20:11 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		key_hook(int keycode, t_env *env)
 			if (env->music)
 			{
 				system("killall afplay");
-				/*system("afplay fractol_song.mp3 &");*/
 				system("afplay psych.mp3 &");
 			}
 		}
@@ -41,8 +40,6 @@ int		key_hook(int keycode, t_env *env)
 
 int		key_hook2(int keycode, t_env *env)
 {
-	if (keycode == 37)
-		env->c_lock = (env->c_lock) ? 0 : 1;
 	if ((keycode >= 18 && keycode <= 23) || keycode == 26 || keycode == 28
 			|| keycode == 25)
 	{
@@ -74,12 +71,10 @@ int		key_hook3(int keycode, t_env *env)
 {
 	if (keycode == 4)
 	{
-		printf("key before env->help : %d \n", env->help);
 		if (env->help)
 			destroy_help(env);
 		else
 			create_help(env);
-		printf("key after env->help : %d \n", env->help);
 	}
 	if (keycode == 46)
 	{
@@ -94,12 +89,17 @@ int		key_hook3(int keycode, t_env *env)
 			if (env->color_picker == 0)
 				system("afplay wait.mp3 &");
 			else
-			{
-			/*	system("afplay fractol_song.mp3 &"); */
 				system("afplay psych.mp3 &");
-			}
 		}
 	}
+	key_hook4(keycode, env);
+	return (1);
+}
+
+int		key_hook4(int keycode, t_env *env)
+{
+	if (keycode == 37)
+		env->c_lock = (env->c_lock) ? 0 : 1;
 	if (keycode == 24)
 	{
 		env->zoom *= 0.9;
@@ -120,6 +120,12 @@ int		key_hook3(int keycode, t_env *env)
 		env->max_y *= 1.1;
 		draw(env);
 	}
+	key_hook5(keycode, env);
+	return (1);
+}
+
+int		key_hook5(int keycode, t_env *env)
+{
 	if (keycode == 38)
 		env->move_r = (env->move_r) ? 0 : 1;
 	if (keycode == 40)

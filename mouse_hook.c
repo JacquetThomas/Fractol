@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:12:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/23 21:37:38 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/26 15:13:34 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,41 @@
 
 void	zoom_in(t_env *env)
 {
-		env->move *= 0.9;
-//		env->min_x *= 0.9;
-		env->min_y *= 0.9;
-		env->max_x *= 0.9;
-//		env->max_y *= 0.9;
-//		draw(env);
-/*	if (keycode == 27)
-	{
-		env->move *= 1.1;
-		env->min_x *= 1.1;
-		env->min_y *= 1.1;
-		env->max_x *= 1.1;
-		env->max_y *= 1.1;
-		draw(env);
-	}*/
+	env->move *= 0.9;
+	env->min_x *= 0.9;
+	env->min_y *= 0.9;
+	env->max_x *= 0.9;
+	env->max_y *= 0.9;
+	draw(env);
 }
 
+/*
+** x1 = x-h, x2 = x+h, y1 = y-h et y2 = y+h
+*/
 int		mouse_hook(int button, int x, int y, t_env *env)
 {
 	t_plex		m;
-	int			xneg;
-	int			yneg;
-//	t_plex		diff;
+	double		h;
 
+	h = 0; //1 / env->zoom;
 	y -= 100;
 	m = map(x, y, env, 0);
-	printf("m.x : %f // m.y : %f\n", m.r, m.i);
-	xneg = (m.r < 0) ? 1 : 0;
-	yneg = (m.i < 0) ? 1 : 0;
 	m.r = fabs(m.r);
 	m.i = fabs(m.i);
-//	diff.r = 
+	printf("m.x : %f // m.y : %f\n", m.r, m.i);
 	if (button == SCROLL_UP || button == 1)
 	{
-//		if (m.r < 0)
-//			env->px += env->move * m.r * 2;
-		if (xneg == 0)
-		{
-//			ft_putendl("1");
-//			env->max_y *= 0.9;// * (m.i * 1 / env->max_y);
-		//	zoom_in(env);
-//			env->px -= env->move * m.r * 2;
-		}
-//		if (m.i < 0)
-//			env->py -= env->move * 2 * m.i;
-		if (yneg == 0)
-		{
-//			ft_putendl("2");
-//			env->min_x *= 0.9;// * (m.r * 1 / env->min_x);
-//			env->py += env->move * m.i * 2;
-		}
+		env->min_x -= m.r ;//- h;
+		env->max_x += m.r ;//+ h;
+		env->min_y -= m.i ;//- h;
+		env->max_y += m.i ;//+ h;
 	}
 	if (button == SCROLL_DOWN || button == 2)
 	{
+		env->min_x = m.r + h;
+		env->max_x = m.r - h;
+		env->min_y = m.i - h;
+		env->max_y = m.i + h;
 	}
 	draw(env);
 	return (1);

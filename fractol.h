@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/24 17:59:17 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/26 14:22:00 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ float					choose_rgb(float r, float g, float b, t_color *c);
 int						draw(t_env *env);
 void					draw_fract(int fract, t_env *env);
 void					print_info(t_env *env);
+void					print_info2(t_env *env);
 
 /*
 ** Functions of key_hook.c
@@ -209,6 +210,8 @@ void					print_info(t_env *env);
 int						key_hook(int keycode, t_env *env);
 int						key_hook2(int keycode, t_env *env);
 int						key_hook3(int keycode, t_env *env);
+int						key_hook4(int keycode, t_env *env);
+int						key_hook5(int keycode, t_env *env);
 
 /*
 ** Functions of mouse_hook.c
