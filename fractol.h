@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/26 14:22:00 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 13:59:06 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# define USAGE "Usage : ./fractol [-m music_dir] [Mandelbrot | Julia | Newton]"
+# define USAGE "Usage : ./fractol [Mandelbrot | Julia | Newton]"
 
 /*
 ** Define colors
@@ -137,30 +137,22 @@ t_plex					c_add(t_plex un, t_plex deux);
 t_plex					map(int x, int y, t_env *env, int pxy);
 
 /*
-** Function of again.c
-*/
-void					again(t_env *env);
-
-/*
 ** Functions of error.c
 */
 void					error_init(t_env *env, int mode);
 void					error_str(char *str, t_env *env, int mode);
-
-/*
-** Functions of free_x.c
-*/
 void					free_all(t_env *env);
 
 /*
 ** Functions of mandelbrot.c
 */
-int						menger_calc(int x, int y, t_env *env);
 int						mandelbrot_calc(int x, int y, t_env *env);
-void					menger(t_env *env);
 void					mandelbrot(t_env *env);
-int						melting_calc(int x, int y, t_env *env);
 void					melting_pot(t_env *env);
+int						melting_calc(int x, int y, t_env *env);
+
+int						menger_calc(int x, int y, t_env *env);
+void					menger(t_env *env);
 
 /*
 ** Functions of burning_ship.c
@@ -180,9 +172,12 @@ void					julia(t_env *env);
 void					set_var(t_env *env);
 void					pixel_put_image(unsigned long img_color, int x, int y,
 		t_env *env);
+
 /*
 ** Functions of update.c
 */
+void					zoom_in(t_env *env);
+void					zoom_out(t_env *env);
 void					maj_var(t_env *env);
 void					maj_julia(t_env *env);
 int						maj_iter(int fract);
@@ -211,7 +206,6 @@ int						key_hook(int keycode, t_env *env);
 int						key_hook2(int keycode, t_env *env);
 int						key_hook3(int keycode, t_env *env);
 int						key_hook4(int keycode, t_env *env);
-int						key_hook5(int keycode, t_env *env);
 
 /*
 ** Functions of mouse_hook.c
@@ -219,6 +213,7 @@ int						key_hook5(int keycode, t_env *env);
 int						exit_cross(t_env *env);
 int						mouse_hook(int button, int x, int y, t_env *env);
 int						mouse_move(int x, int y, t_env *env);
+
 /*
 ** Functions of str_tools.c
 */

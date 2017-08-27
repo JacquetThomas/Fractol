@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/26 14:20:11 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 17:22:50 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int		key_hook(int keycode, t_env *env)
 
 int		key_hook2(int keycode, t_env *env)
 {
-	if ((keycode >= 18 && keycode <= 23) || keycode == 26 || keycode == 28
-			|| keycode == 25)
+	if ((keycode >= 18 && keycode <= 23) || keycode == 26 || keycode == 28)
 	{
 		if (keycode == 18)
 			env->fract_name = 0;
@@ -59,8 +58,6 @@ int		key_hook2(int keycode, t_env *env)
 			env->fract_name = 6;
 		if (keycode == 28)
 			env->fract_name = 7;
-		if (keycode == 25)
-			env->fract_name = 8;
 		maj_var(env);
 	}
 	key_hook3(keycode, env);
@@ -98,44 +95,46 @@ int		key_hook3(int keycode, t_env *env)
 
 int		key_hook4(int keycode, t_env *env)
 {
+	if (keycode == 27)
+		zoom_out(env);
+	if (keycode == 24)
+		zoom_in(env);
 	if (keycode == 37)
 		env->c_lock = (env->c_lock) ? 0 : 1;
-	if (keycode == 24)
-	{
-		env->zoom *= 0.9;
-		env->move *= 0.9;
-		env->min_x *= 0.9;
-		env->min_y *= 0.9;
-		env->max_x *= 0.9;
-		env->max_y *= 0.9;
-		draw(env);
-	}
-	if (keycode == 27)
-	{
-		env->zoom *= 1.1;
-		env->move *= 1.1;
-		env->min_x *= 1.1;
-		env->min_y *= 1.1;
-		env->max_x *= 1.1;
-		env->max_y *= 1.1;
-		draw(env);
-	}
-	key_hook5(keycode, env);
-	return (1);
-}
-
-int		key_hook5(int keycode, t_env *env)
-{
 	if (keycode == 38)
 		env->move_r = (env->move_r) ? 0 : 1;
 	if (keycode == 40)
 		env->move_i = (env->move_i) ? 0 : 1;
 	env->max_i += (keycode == 69 && env->max_i < 500) ? 1 : 0;
 	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
-	env->px = (keycode == LEFT) ? env->px + env->move : env->px;
-	env->px = (keycode == RIGHT) ? env->px - env->move : env->px;
-	env->py = (keycode == DOWN) ? env->py - env->move : env->py;
-	env->py = (keycode == UP) ? env->py + env->move : env->py;
+	if (keycode == LEFT || keycode == RIGHT || keycode == UP || keycode == DOWN)
+	{
+		if (keycode == LEFT)
+		{
+			env->px += env->move;
+	//		env->max_x += env->move;
+	//		env->min_x += env->move;
+		}
+		if (keycode == RIGHT)
+		{
+			env->px -= env->move;
+	//		env->max_x -= env->move;
+	//		env->min_x -= env->move;
+		}
+		if (keycode == UP)
+		{
+			env->py += env->move;
+	//		env->max_y += env->move;
+	//		env->min_y += env->move;
+		}
+		if (keycode == DOWN)
+		{
+			env->py -= env->move;
+	//		env->max_y -= env->move;
+	//		env->min_y -= env->move;
+		}
+		printf("minx : %f // maxx: %f\nminy : %f // maxy : %f\ndiffx %f // diffy %f\n", env->min_x, env->max_x, env->min_y, env->max_y, env->max_x - env->min_x, env->max_y - env->min_y);
+	}
 	if (keycode == 6)
 		maj_var(env);
 	if (keycode == 53 || keycode == 12)

@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:32:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 17:14:32 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 22:34:21 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		newton_calc(int x, int y, t_env *env)
 {
 	t_calc	c;
+	double	tmp;
 
 	c.point = map(x, y, env, 1);
 	c.new.r = c.point.r;
@@ -23,8 +24,12 @@ int		newton_calc(int x, int y, t_env *env)
 	while (++env->iter < env->max_i)
 	{
 		c.old = c.new;
-		c.new = c_sous(c.old, c_div(f(c.old, env->nvar), df(c.old, env->nvar)));
-		if ((c.new.r * c.new.r + c.new.i * c.new.i) > 10)
+		tmp = (c.new.r * c.new.r + c.new.i * c.new.i) * (c.new.r * c.new.r + c.new.i * c.new.i);
+		c.new.r = (2 * c.new.r * tmp + c.new.r * c.new.r - c.new.i * c.new.i) / (3.0 * tmp);
+		c.new.i = (2 * c.new.i * (tmp - c.old.r)) / (3.0 * tmp);
+		//c.new = c_sous(c.old, c_div(f(c.old, env->nvar), df(c.old, env->nvar)));
+		tmp = (c.new.r - c.old.r) * (c.new.r - c.old.r) + (c.new.i - c.old.i) * (c.new.i - c.old.i);
+		if (tmp > 0.000001)
 			return (env->iter);
 	}
 	return (env->iter);

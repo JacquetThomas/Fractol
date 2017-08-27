@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/24 18:02:15 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 15:45:58 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		set_var(t_env *env)
 {
-	env->px = 0.0;
-	env->py = 0.0;
-	env->move = 0.01;
+	env->px = 0;
+	env->py = 0;
+	env->move = 0.1;
 	env->move_r = 0;
 	env->move_i = 0;
 	env->max_x = 2.0;
@@ -26,7 +26,6 @@ void		set_var(t_env *env)
 	env->julia.r = 0.285;
 	env->julia.i = 0.01;
 	env->c_lock = 0;
-	env->zoom = 1;
 	env->color_m = 5;
 	env->color_picker = 0;
 	env->music = 0;

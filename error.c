@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:58:16 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/07/27 15:32:19 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 14:34:07 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ void	error_str(char *str, t_env *env, int mode)
 {
 	ft_putendl(str);
 	if (mode == 1)
-	{
 		free_all(env);
-	}
 	if (env->music == 1)
 		system("killall afplay");
 	exit(0);
+}
+
+void	free_all(t_env *env)
+{
+	if (env->win)
+		mlx_destroy_window(env->mlx, env->win);
 }

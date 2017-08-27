@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 11:55:42 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/26 14:22:47 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 15:07:08 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	draw_fract(int fract, t_env *env)
 		melting_pot(env);
 	if (fract == 7)
 		mandelbrot(env);
-	if (fract == 8)
-		menger(env);
 }
 
 void	print_info(t_env *env)

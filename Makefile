@@ -9,10 +9,8 @@ SRCS		=	main.c \
 				draw.c \
 				key_hook.c \
 				mouse_hook.c \
-				free_x.c \
 				init.c \
 				update.c \
-				menger.c \
 				mandelbrot.c \
 				julia.c \
 				burning_ship.c \

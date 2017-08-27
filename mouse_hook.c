@@ -6,49 +6,37 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:12:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/26 15:13:34 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 22:20:08 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	zoom_in(t_env *env)
-{
-	env->move *= 0.9;
-	env->min_x *= 0.9;
-	env->min_y *= 0.9;
-	env->max_x *= 0.9;
-	env->max_y *= 0.9;
-	draw(env);
-}
 
 /*
 ** x1 = x-h, x2 = x+h, y1 = y-h et y2 = y+h
 */
 int		mouse_hook(int button, int x, int y, t_env *env)
 {
-	t_plex		m;
-	double		h;
-
-	h = 0; //1 / env->zoom;
+	t_plex			m;
+	
 	y -= 100;
-	m = map(x, y, env, 0);
-	m.r = fabs(m.r);
-	m.i = fabs(m.i);
-	printf("m.x : %f // m.y : %f\n", m.r, m.i);
+	m = map(x, y, env,1 );
+	printf("m.x : %f // m.y: %f\n", m.r, m.i);
+	if (x >= 0 && x < W_WIDTH && y >= 0 && y < W_HEIGHT)
+	{
 	if (button == SCROLL_UP || button == 1)
 	{
-		env->min_x -= m.r ;//- h;
-		env->max_x += m.r ;//+ h;
-		env->min_y -= m.i ;//- h;
-		env->max_y += m.i ;//+ h;
+		env->px = m.r;
+		env->py = m.i;
+		zoom_in(env);
 	}
 	if (button == SCROLL_DOWN || button == 2)
 	{
-		env->min_x = m.r + h;
-		env->max_x = m.r - h;
-		env->min_y = m.i - h;
-		env->max_y = m.i + h;
+		env->px = m.r;
+		env->py = m.i;
+		zoom_out(env);
+	}
+	printf("px : %f // yy: %f\n", env->px, env->py);
 	}
 	draw(env);
 	return (1);
@@ -76,9 +64,7 @@ int		exit_cross(t_env *env)
 {
 	if (env->music)
 		system("killall afplay");
-	printf("1adresse env %p\n", env);
-	if (env->help)
-		destroy_help(env);
+	ft_putendl("It's the end of fractol as we know it!");
 	exit(0);
 	return (0);
 }

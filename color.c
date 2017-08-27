@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/26 14:23:10 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/27 14:21:49 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ unsigned int	get_color(float h, float s, float l, t_env *env)
 	t_hsl		calc;
 	t_color		color;
 
+//	printf("saturation : %f\n", s);
 	if (h == 360)
 	{
 		uni = b_or_w(env);
