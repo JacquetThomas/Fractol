@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:52:37 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 15:45:58 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:07:58 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		set_var(t_env *env)
 	env->grey = 0;
 	env->nvar = (env->fract_name == 3) ? 1 : 0;
 	env->max_i = (env->fract_name == 2 || env->fract_name == 3) ? 35 : 72;
+	env->auto_i = 0;
 }
 
 void		pixel_put_image(unsigned long img_color, int x, int y,

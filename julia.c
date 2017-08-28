@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:39:59 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/20 17:13:18 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:23:27 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	julia(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = julia_calc(x, y, env);
-			s = env->grey ? (float)i / (float)env->max_i : 1.0;;
+			s = env->grey ? (float)i / (float)env->max_i : 1.0;
 			pixel_put_image(get_color(i * 360 / env->max_i, s,
 						0.8 * (i < env->max_i), env),
 					x, y, env);

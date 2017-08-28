@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 11:08:15 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:42:52 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,32 @@ int		key_hook4(int keycode, t_env *env)
 		env->move_r = (env->move_r) ? 0 : 1;
 	if (keycode == 40)
 		env->move_i = (env->move_i) ? 0 : 1;
-	env->max_i += (keycode == 69 && env->max_i < 500) ? 1 : 0;
+	env->max_i += (keycode == 69) ? 1 : 0;
 	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
-	env->px = (keycode == LEFT) ? env->px + env->move : env->px;
-	env->px = (keycode == RIGHT) ? env->px - env->move : env->px;
-	env->py = (keycode == UP) ? env->py + env->move : env->py;
-	if (keycode == DOWN)
-	env->py = (keycode == DOWN) ? env->py - env->move : env->py;
+	if (keycode == 34)
+		env->auto_i = (env->auto_i) ? 0 : 1;
 	if (keycode == 5)
 		env->grey = (env->grey) ? 0 : 1;
+	if (keycode == RIGHT)
+	{
+		env->min_x += env->move;
+		env->max_x += env->move;
+	}
+	if (keycode == LEFT)
+	{
+		env->min_x -= env->move;
+		env->max_x -= env->move;
+	}
+	if (keycode == DOWN)
+	{
+		env->min_y += env->move;
+		env->max_y += env->move;
+	}
+	if (keycode == UP)
+	{
+		env->min_y -= env->move;
+		env->max_y -= env->move;
+	}
 	if (keycode == 6)
 		maj_var(env);
 	if (keycode == 53 || keycode == 12)

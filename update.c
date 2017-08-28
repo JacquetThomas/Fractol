@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 15:22:58 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 11:04:09 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:08:18 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@ void		maj_var(t_env *env)
 	env->color_m = 5;
 	env->nvar = (env->fract_name == 3) ? 1 : 0;
 	env->max_i = maj_iter(env->fract_name);
+	env->auto_i = 0;
 }
 
 int			maj_iter(int fract)
 {
-	if (fract == 2 || fract == 3 || fract == 5)
+	if (fract == 5)
 		return (35);
+	else if (fract == 2)
+		return (10);
+	else if (fract == 3)
+		return (25);
 	else
 		return (72);
 }
@@ -64,20 +69,7 @@ int			maj_iter(int fract)
 void		zoom(int keycode, t_env *env)
 {
 	if (keycode == 27)
-	{
-		env->move *= 1.1;
-		env->min_x *= 1.1;
-		env->min_y *= 1.1;
-		env->max_x *= 1.1;
-		env->max_y *= 1.1;
-	}
+		mouse_hook(2, 300, 400, env);
 	else
-	{
-		env->move *= 0.9;
-		env->min_x *= 0.9;
-		env->min_y *= 0.9;
-		env->max_x *= 0.9;
-		env->max_y *= 0.9;
-	}
-	draw(env);
+		mouse_hook(1, 300, 400, env);
 }

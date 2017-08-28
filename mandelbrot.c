@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:38:39 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 14:28:44 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:24:30 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	mandelbrot(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = mandelbrot_calc(x, y, env);
-			s = env->grey ? (float)i / (float)env->max_i : 1.0;;
+			s = env->grey ? (float)i / (float)env->max_i : 1.0;
 			pixel_put_image(get_color(i * 360 / env->max_i, s,
 						0.8 * (i < env->max_i), env), x, y, env);
 			y++;
@@ -95,7 +95,7 @@ void	melting_pot(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = melting_calc(x, y, env);
-			s = env->grey ? (float)i / (float)env->max_i : 1.0;;
+			s = env->grey ? (float)i / (float)env->max_i : 1.0;
 			pixel_put_image(get_color(i * 360 / env->max_i, s,
 						0.8 * (i < env->max_i), env), x, y, env);
 			y++;

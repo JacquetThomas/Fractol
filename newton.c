@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:32:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 22:34:21 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:25:20 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		newton_calc(int x, int y, t_env *env)
 {
 	t_calc	c;
-	double	tmp;
 
 	c.point = map(x, y, env, 1);
 	c.new.r = c.point.r;
@@ -24,12 +23,8 @@ int		newton_calc(int x, int y, t_env *env)
 	while (++env->iter < env->max_i)
 	{
 		c.old = c.new;
-		tmp = (c.new.r * c.new.r + c.new.i * c.new.i) * (c.new.r * c.new.r + c.new.i * c.new.i);
-		c.new.r = (2 * c.new.r * tmp + c.new.r * c.new.r - c.new.i * c.new.i) / (3.0 * tmp);
-		c.new.i = (2 * c.new.i * (tmp - c.old.r)) / (3.0 * tmp);
-		//c.new = c_sous(c.old, c_div(f(c.old, env->nvar), df(c.old, env->nvar)));
-		tmp = (c.new.r - c.old.r) * (c.new.r - c.old.r) + (c.new.i - c.old.i) * (c.new.i - c.old.i);
-		if (tmp > 0.000001)
+		c.new = c_sous(c.old, c_div(f(c.old, env->nvar), df(c.old, env->nvar)));
+		if ((c.new.r * c.new.r + c.new.i * c.new.i) > 16)
 			return (env->iter);
 	}
 	return (env->iter);
@@ -91,7 +86,7 @@ void	newton(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = newton_calc(x, y, env);
-			s = (env->grey) ?  (float)i / (float)env->max_i : 1.0;
+			s = (env->grey) ? (float)i / (float)env->max_i : 1.0;
 			pixel_put_image(get_color(i * 360 / env->max_i, s,
 						0.8 * (i < env->max_i), env), x, y, env);
 			y++;

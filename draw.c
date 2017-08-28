@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 11:55:42 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 15:07:08 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:20:37 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void	print_info(t_env *env)
 
 void	print_info2(t_env *env)
 {
+	char	*ito;
+
 	mlx_string_put(env->mlx, env->win, 2, 40, 0x00FF0000, "Iterations:");
+	ito = (env->auto_i) ? "auto" : "manual";
+	mlx_string_put(env->mlx, env->win, 160, 40, 0x00FF0000, ito);
 	mlx_string_put(env->mlx, env->win, 2, 0, 0x00FF0000, "Music:");
 	if (env->music)
 		mlx_string_put(env->mlx, env->win, 67, 0, 0x00FF0000, "ON");

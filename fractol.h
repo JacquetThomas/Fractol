@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 13:59:06 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 20:31:14 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct			s_env
 	int					sizeline_b;
 	int					endian;
 	int					iter;
+	int					auto_i;
 	int					max_i;
 	int					music;
 }						t_env;
@@ -208,6 +209,8 @@ int						key_hook4(int keycode, t_env *env);
 int						exit_cross(t_env *env);
 int						mouse_hook(int button, int x, int y, t_env *env);
 int						mouse_move(int x, int y, t_env *env);
+void					zoom_in(t_plex m, t_env *env);
+void					zoom_out(t_plex m, t_env *env);
 
 /*
 ** Functions of str_tools.c
