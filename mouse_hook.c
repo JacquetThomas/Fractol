@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:12:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 22:20:08 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 11:05:33 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 /*
 ** x1 = x-h, x2 = x+h, y1 = y-h et y2 = y+h
 */
+
 int		mouse_hook(int button, int x, int y, t_env *env)
 {
 	t_plex			m;
-	
+
 	y -= 100;
-	m = map(x, y, env,1 );
+	m = map(x, y, env, 1);
 	printf("m.x : %f // m.y: %f\n", m.r, m.i);
 	if (x >= 0 && x < W_WIDTH && y >= 0 && y < W_HEIGHT)
 	{
-	if (button == SCROLL_UP || button == 1)
-	{
-		env->px = m.r;
-		env->py = m.i;
-		zoom_in(env);
-	}
-	if (button == SCROLL_DOWN || button == 2)
-	{
-		env->px = m.r;
-		env->py = m.i;
-		zoom_out(env);
-	}
-	printf("px : %f // yy: %f\n", env->px, env->py);
+		if (button == SCROLL_UP || button == 1)
+		{
+			env->px = m.r;
+			env->py = m.i;
+			zoom_in(env);
+		}
+		if (button == SCROLL_DOWN || button == 2)
+		{
+			env->px = m.r;
+			env->py = m.i;
+			zoom_out(env);
+		}
+		printf("px : %f // yy: %f\n", env->px, env->py);
 	}
 	draw(env);
 	return (1);

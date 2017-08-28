@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 15:22:58 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 15:45:42 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 11:04:09 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void		zoom_in(t_env *env)
 	env->min_y *= 0.9;
 	env->max_x *= 0.9;
 	env->max_y *= 0.9;
-		printf("minx : %f // maxx: %f\nminy : %f // maxy : %f\ndiffx %f // diffy %f\n", env->min_x, env->max_x, env->min_y, env->max_y, env->max_x - env->min_x, env->max_y - env->min_y);
 	draw(env);
 }
 
@@ -79,6 +78,5 @@ void		zoom_out(t_env *env)
 	env->min_y *= 1.1;
 	env->max_x *= 1.1;
 	env->max_y *= 1.1;
-		printf("minx : %f // maxx: %f\nminy : %f // maxy : %f\ndiffx %f // diffy %f\n", env->min_x, env->max_x, env->min_y, env->max_y, env->max_x - env->min_x, env->max_y - env->min_y);
 	draw(env);
 }

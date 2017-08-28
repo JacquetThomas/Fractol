@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/27 17:22:50 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 11:08:15 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,34 +107,13 @@ int		key_hook4(int keycode, t_env *env)
 		env->move_i = (env->move_i) ? 0 : 1;
 	env->max_i += (keycode == 69 && env->max_i < 500) ? 1 : 0;
 	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
-	if (keycode == LEFT || keycode == RIGHT || keycode == UP || keycode == DOWN)
-	{
-		if (keycode == LEFT)
-		{
-			env->px += env->move;
-	//		env->max_x += env->move;
-	//		env->min_x += env->move;
-		}
-		if (keycode == RIGHT)
-		{
-			env->px -= env->move;
-	//		env->max_x -= env->move;
-	//		env->min_x -= env->move;
-		}
-		if (keycode == UP)
-		{
-			env->py += env->move;
-	//		env->max_y += env->move;
-	//		env->min_y += env->move;
-		}
-		if (keycode == DOWN)
-		{
-			env->py -= env->move;
-	//		env->max_y -= env->move;
-	//		env->min_y -= env->move;
-		}
-		printf("minx : %f // maxx: %f\nminy : %f // maxy : %f\ndiffx %f // diffy %f\n", env->min_x, env->max_x, env->min_y, env->max_y, env->max_x - env->min_x, env->max_y - env->min_y);
-	}
+	env->px = (keycode == LEFT) ? env->px + env->move : env->px;
+	if (keycode == RIGHT)
+		env->px -= env->move;
+	if (keycode == UP)
+		env->py += env->move;
+	if (keycode == DOWN)
+		env->py -= env->move;
 	if (keycode == 6)
 		maj_var(env);
 	if (keycode == 53 || keycode == 12)
