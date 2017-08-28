@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:12:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 11:05:33 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/28 18:51:54 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int		mouse_hook(int button, int x, int y, t_env *env)
 	{
 		if (button == SCROLL_UP || button == 1)
 		{
-			env->px = m.r;
-			env->py = m.i;
-			zoom(24, env);
+			env->min_x = m.r - ((m.r - env->min_x) / 2);
+			env->min_y = m.i - ((m.i - env->min_y) / 2);
+			env->max_x = m.r + ((env->max_x - m.r) / 2);
+			env->max_y = m.i + ((env->max_y - m.i) / 2);
+		//	env->px = m.r;
+		//	env->py = m.i;
+		//	zoom(24, env);
 		}
 		if (button == SCROLL_DOWN || button == 2)
 		{
-			env->px = m.r;
-			env->py = m.i;
-			zoom(27, env);
+		//	env->px = m.r;
+		//	env->py = m.i;
+		//	zoom(27, env);
 		}
 	}
 	draw(env);
