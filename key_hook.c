@@ -95,10 +95,8 @@ int		key_hook3(int keycode, t_env *env)
 
 int		key_hook4(int keycode, t_env *env)
 {
-	if (keycode == 27)
-		zoom_out(env);
-	if (keycode == 24)
-		zoom_in(env);
+	if (keycode == 27 || keycode == 24)
+		zoom(keycode, env);
 	if (keycode == 37)
 		env->c_lock = (env->c_lock) ? 0 : 1;
 	if (keycode == 38)
@@ -108,12 +106,12 @@ int		key_hook4(int keycode, t_env *env)
 	env->max_i += (keycode == 69 && env->max_i < 500) ? 1 : 0;
 	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
 	env->px = (keycode == LEFT) ? env->px + env->move : env->px;
-	if (keycode == RIGHT)
-		env->px -= env->move;
-	if (keycode == UP)
-		env->py += env->move;
+	env->px = (keycode == RIGHT) ? env->px - env->move : env->px;
+	env->py = (keycode == UP) ? env->py + env->move : env->py;
 	if (keycode == DOWN)
-		env->py -= env->move;
+	env->py = (keycode == DOWN) ? env->py - env->move : env->py;
+	if (keycode == 5)
+		env->grey = (env->grey) ? 0 : 1;
 	if (keycode == 6)
 		maj_var(env);
 	if (keycode == 53 || keycode == 12)

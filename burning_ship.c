@@ -40,9 +40,10 @@ int		burning_calc(int x, int y, t_env *env)
 
 void	burning_ship(t_env *env)
 {
-	int	y;
-	int	x;
-	int	i;
+	int		y;
+	int		x;
+	int		i;
+	float	s;
 
 	x = 1;
 	while (x < W_WIDTH)
@@ -51,7 +52,8 @@ void	burning_ship(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = burning_calc(x, y, env);
-			pixel_put_image(get_color(i * 360 / env->max_i, 1,
+			s = (env->grey) ? (float)i / (float)env->max_i : 1.0;
+			pixel_put_image(get_color(i * 360 / env->max_i, s,
 						0.8 * (i < env->max_i), env), x, y, env);
 			y++;
 		}

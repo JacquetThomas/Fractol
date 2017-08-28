@@ -37,7 +37,7 @@ void	julia(t_env *env)
 	int		y;
 	int		x;
 	int		i;
-	float	l;
+	float	s;
 
 	x = 1;
 	while (x < W_WIDTH)
@@ -46,8 +46,9 @@ void	julia(t_env *env)
 		while (y < W_HEIGHT)
 		{
 			i = julia_calc(x, y, env);
-			l = (i < env->max_i) * 0.8;
-			pixel_put_image(get_color(i * 360 / env->max_i, 1, l, env),
+			s = env->grey ? (float)i / (float)env->max_i : 1.0;;
+			pixel_put_image(get_color(i * 360 / env->max_i, s,
+						0.8 * (i < env->max_i), env),
 					x, y, env);
 			y++;
 		}

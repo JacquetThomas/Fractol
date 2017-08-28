@@ -42,9 +42,9 @@ void	print_help(t_env *env)
 void	print_help2(int d, int h, t_env *env)
 {
 	mlx_string_put(env->mlx, env->win, d, h - 80, 0x00FFFFFF,
-			"Reset : (z)");
+			"Change color mode : (g) Grey pastel / Rainbow");
 	mlx_string_put(env->mlx, env->win, d, h - 60, 0x00FFFFFF,
-			"...");
+			"Reset : (z)");
 	mlx_string_put(env->mlx, env->win, d, h - 40, 0x00FFFFFF,
 			"Quit: (esc) or (q)");
 	mlx_string_put(env->mlx, env->win, d, h - 20, 0x00FFFFFF,

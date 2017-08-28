@@ -61,22 +61,23 @@ int			maj_iter(int fract)
 		return (72);
 }
 
-void		zoom_in(t_env *env)
+void		zoom(int keycode, t_env *env)
 {
-	env->move *= 0.9;
-	env->min_x *= 0.9;
-	env->min_y *= 0.9;
-	env->max_x *= 0.9;
-	env->max_y *= 0.9;
-	draw(env);
-}
-
-void		zoom_out(t_env *env)
-{
-	env->move *= 1.1;
-	env->min_x *= 1.1;
-	env->min_y *= 1.1;
-	env->max_x *= 1.1;
-	env->max_y *= 1.1;
+	if (keycode == 27)
+	{
+		env->move *= 1.1;
+		env->min_x *= 1.1;
+		env->min_y *= 1.1;
+		env->max_x *= 1.1;
+		env->max_y *= 1.1;
+	}
+	else
+	{
+		env->move *= 0.9;
+		env->min_x *= 0.9;
+		env->min_y *= 0.9;
+		env->max_x *= 0.9;
+		env->max_y *= 0.9;
+	}
 	draw(env);
 }

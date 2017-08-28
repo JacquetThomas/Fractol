@@ -77,11 +77,11 @@ typedef struct			s_env
 	int					help;
 	int					fract_name;
 	int					nvar;
+	int					grey;
 	t_plex				julia;
 	double				move;
 	void				*mlx;
 	void				*win;
-	void				*win_h;
 	void				*img;
 	void				*img_b;
 	int					color_m;
@@ -93,13 +93,9 @@ typedef struct			s_env
 	int					sizeline;
 	int					sizeline_b;
 	int					endian;
-	int					black;
 	int					iter;
 	int					max_i;
-	unsigned int		color;
 	int					music;
-	int					music_m;
-	int					music_s;
 }						t_env;
 
 typedef struct			s_color
@@ -176,8 +172,7 @@ void					pixel_put_image(unsigned long img_color, int x, int y,
 /*
 ** Functions of update.c
 */
-void					zoom_in(t_env *env);
-void					zoom_out(t_env *env);
+void					zoom(int keycode, t_env *env);
 void					maj_var(t_env *env);
 void					maj_julia(t_env *env);
 int						maj_iter(int fract);

@@ -29,8 +29,8 @@ void		set_var(t_env *env)
 	env->color_m = 5;
 	env->color_picker = 0;
 	env->music = 0;
-	env->black = 0;
 	env->help = 0;
+	env->grey = 0;
 	env->nvar = (env->fract_name == 3) ? 1 : 0;
 	env->max_i = (env->fract_name == 2 || env->fract_name == 3) ? 35 : 72;
 }

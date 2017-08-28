@@ -41,21 +41,10 @@ fclean : clean
 
 re : fclean all
 
-debug :
-	make -C libft/
-	gcc $(CFLAGS) -g -c $(SRCS) -include $(INCL)
-	gcc $(CFLAGS) -g $(OBJ) $(MLX_FLAG) $(LIB_FLAG) -o $(NAME)
-	lldb fdf
-
 sierra :
 	make -C libft/
 	make -C minilibx_sierra/
 	gcc $(CFLAGS) -c $(SRCS) -include $(INCL)
 	gcc $(CFLAGS) $(OBJ) -lm -Iminilibx_sierra/ minilibx_sierra/libmlx.a -framework OpenGL -framework AppKit $(LIB_FLAG) -o $(NAME)
 
-test : fclean
-	make -C libft/
-	make -C minilibx_sierra/
-	gcc $(CFLAGS) -c test/*.c -include $(INCL)
-	gcc $(CFLAGS) *.o -lm -Iminilibx_sierra/ minilibx_sierra/libmlx.a -framework OpenGL -framework AppKit $(LIB_FLAG) -o $(NAME)
-	./fdf
+.PHONY: sierra clean all

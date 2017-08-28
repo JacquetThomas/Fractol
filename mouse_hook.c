@@ -12,32 +12,26 @@
 
 #include "fractol.h"
 
-/*
-** x1 = x-h, x2 = x+h, y1 = y-h et y2 = y+h
-*/
-
 int		mouse_hook(int button, int x, int y, t_env *env)
 {
 	t_plex			m;
 
 	y -= 100;
 	m = map(x, y, env, 1);
-	printf("m.x : %f // m.y: %f\n", m.r, m.i);
 	if (x >= 0 && x < W_WIDTH && y >= 0 && y < W_HEIGHT)
 	{
 		if (button == SCROLL_UP || button == 1)
 		{
 			env->px = m.r;
 			env->py = m.i;
-			zoom_in(env);
+			zoom(24, env);
 		}
 		if (button == SCROLL_DOWN || button == 2)
 		{
 			env->px = m.r;
 			env->py = m.i;
-			zoom_out(env);
+			zoom(27, env);
 		}
-		printf("px : %f // yy: %f\n", env->px, env->py);
 	}
 	draw(env);
 	return (1);
