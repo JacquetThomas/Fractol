@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 11:12:45 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 20:31:28 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/30 13:17:57 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		exit_cross(t_env *env)
 
 void	zoom_in(t_plex m, t_env *env)
 {
-	if (env->auto_i)
+	if (env->auto_i && env->max_i < 1990)
 		env->max_i += 10;
 	env->move *= 0.5;
 	env->min_x = m.r - ((m.r - env->min_x) / 2);

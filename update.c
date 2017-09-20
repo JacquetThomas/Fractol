@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 15:22:58 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 20:08:18 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/29 13:11:54 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		maj_var(t_env *env)
 	env->min_x = -2.0;
 	env->min_y = -2.0;
 	env->color_m = 5;
+	env->grey = 0;
 	env->nvar = (env->fract_name == 3) ? 1 : 0;
 	env->max_i = maj_iter(env->fract_name);
 	env->auto_i = 0;

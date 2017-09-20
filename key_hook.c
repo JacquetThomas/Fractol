@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 12:46:41 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 20:42:52 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/30 13:17:30 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,20 @@ int		key_hook4(int keycode, t_env *env)
 		env->move_r = (env->move_r) ? 0 : 1;
 	if (keycode == 40)
 		env->move_i = (env->move_i) ? 0 : 1;
-	env->max_i += (keycode == 69) ? 1 : 0;
+	env->max_i += (keycode == 69 && env->max_i < 2000) ? 1 : 0;
 	env->max_i -= (keycode == 78 && env->max_i > 1) ? 1 : 0;
 	if (keycode == 34)
 		env->auto_i = (env->auto_i) ? 0 : 1;
 	if (keycode == 5)
 		env->grey = (env->grey) ? 0 : 1;
+	if (keycode == 6)
+		maj_var(env);
+	key_hook5(keycode, env);
+	return (1);
+}
+
+int		key_hook5(int keycode, t_env *env)
+{
 	if (keycode == RIGHT)
 	{
 		env->min_x += env->move;
@@ -129,8 +137,6 @@ int		key_hook4(int keycode, t_env *env)
 		env->min_y -= env->move;
 		env->max_y -= env->move;
 	}
-	if (keycode == 6)
-		maj_var(env);
 	if (keycode == 53 || keycode == 12)
 		error_str("It's the end of fractol as we know it!", env, 2);
 	draw(env);

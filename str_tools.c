@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 10:56:05 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/07/27 15:47:43 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/29 14:54:07 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,4 @@ int		is_fract_name(char *str)
 		return (2);
 	else
 		return (42);
-}
-
-int		is_alnum_comma(char c)
-{
-	return (ft_isalnum(c) || c == ',');
-}
-
-int		is_white(char c)
-{
-	return (c == ' ' || c == '\n' || c == '\t');
 }

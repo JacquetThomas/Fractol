@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 13:36:33 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/28 20:31:14 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/29 15:04:51 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define FRACTOL_H
 
 # include "libft/libft.h"
-# include <fcntl.h>
 # include "minilibx/mlx.h"
-# include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
 # define USAGE "Usage : ./fractol [Mandelbrot | Julia | Newton]"
@@ -148,9 +145,6 @@ void					mandelbrot(t_env *env);
 void					melting_pot(t_env *env);
 int						melting_calc(int x, int y, t_env *env);
 
-int						menger_calc(int x, int y, t_env *env);
-void					menger(t_env *env);
-
 /*
 ** Functions of burning_ship.c
 */
@@ -202,6 +196,7 @@ int						key_hook(int keycode, t_env *env);
 int						key_hook2(int keycode, t_env *env);
 int						key_hook3(int keycode, t_env *env);
 int						key_hook4(int keycode, t_env *env);
+int						key_hook5(int keycode, t_env *env);
 
 /*
 ** Functions of mouse_hook.c
@@ -216,8 +211,6 @@ void					zoom_out(t_plex m, t_env *env);
 ** Functions of str_tools.c
 */
 int						is_fract_name(char *str);
-int						is_alnum_comma(char c);
-int						is_white(char c);
 
 /*
 ** Functions of help.c

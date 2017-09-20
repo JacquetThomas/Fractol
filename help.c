@@ -6,7 +6,7 @@
 /*   By: cjacquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 13:46:58 by cjacquet          #+#    #+#             */
-/*   Updated: 2017/08/24 14:43:41 by cjacquet         ###   ########.fr       */
+/*   Updated: 2017/08/29 14:25:51 by cjacquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void	print_help(t_env *env)
 	mlx_string_put(env->mlx, env->win, d, h - 120, 0x00FFFFFF,
 			"Lock Julia const.: (l)ock");
 	mlx_string_put(env->mlx, env->win, d, h - 100, 0x00FFFFFF,
-			"Change fractals : (1-8)");
+			"Change fractals: (1-8)");
 	print_help2(d, h, env);
 }
 
 void	print_help2(int d, int h, t_env *env)
 {
 	mlx_string_put(env->mlx, env->win, d, h - 80, 0x00FFFFFF,
-			"Change color mode : (g) Grey pastel / Rainbow");
+			"Color mode: (g) Grey pastel / Rainbow");
 	mlx_string_put(env->mlx, env->win, d, h - 60, 0x00FFFFFF,
-			"Reset : (z)");
+			"Mouse: zoom in&out w/ wheel or button");
 	mlx_string_put(env->mlx, env->win, d, h - 40, 0x00FFFFFF,
-			"Quit: (esc) or (q)");
+			"Quit: (esc) or (q)    | Reset: (z)");
 	mlx_string_put(env->mlx, env->win, d, h - 20, 0x00FFFFFF,
 			"Help menu: (h) open/close");
 }

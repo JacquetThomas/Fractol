@@ -1,5 +1,5 @@
 MLX_FLAG	=	-lmlx -framework OpenGL -framework AppKit
-CFLAGS		=	-Wextra -Wall -Werror -O3 -Ofast
+CFLAGS		=	-Wextra -Wall -Werror -O3
 INCL		=	fractol.h
 LIB_FLAG	=	-Ilibft/ libft/libft.a
 SRCS		=	main.c \
@@ -17,7 +17,6 @@ SRCS		=	main.c \
 				newton.c \
 				complex_calc.c \
 				color.c \
-				again.c \
 				help.c
 OBJ			=	$(SRCS:.c=.o)
 NAME		=	fractol
